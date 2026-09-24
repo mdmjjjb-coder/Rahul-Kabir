@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MH Rahul – Web Developer Portfolio</title>
+    <meta name="description" content="Premium, modern, highly animated personal developer portfolio website for MH Rahul – Web Developer." />
+    <meta property="og:title" content="MH Rahul – Web Developer Portfolio" />
+    <meta property="og:description" content="Premium, modern, highly animated personal developer portfolio website for MH Rahul – Web Developer." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/images/profile.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#05070b" />
+
+    <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+    <!-- Font Awesome 6.5.1 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Futuristic Dark Styles -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- ====================================================================
+         BACKGROUND ANIMATION & PHOTO BACKDROP SYSTEM
+         ==================================================================== -->
+    <div class="bg-canvas-wrapper" aria-hidden="true">
+      <!-- Ambient Developer Photo Backdrop Layer -->
+      <div class="bg-photo-layer" id="bgPhotoLayer">
+        <div class="bg-photo-glow-radial"></div>
+        <img id="bgPhotoImg" src="assets/images/hero_bg.png" alt="MH Rahul Background" class="bg-photo-backdrop-img" />
+        <div class="bg-photo-scanlines"></div>
+        <div class="bg-photo-vignette"></div>
+      </div>
+      <div class="bg-grid-overlay"></div>
+      <div class="bg-glow-blob blob-1"></div>
+      <div class="bg-glow-blob blob-2"></div>
+      <div class="bg-glow-blob blob-3"></div>
+      <canvas id="particlesCanvas"></canvas>
+      <div class="mouse-cursor-glow" id="mouseCursorGlow"></div>
+    </div>
+
+    <!-- ====================================================================
+         NAVIGATION BAR
+         ==================================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-custom" id="mainNavbar" aria-label="Main Navigation">
+      <div class="container">
+        <!-- Brand Wordmark -->
+        <a class="navbar-brand navbar-brand-logo" href="#home">
+          <span class="logo-badge-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+          <span>MH RAHUL</span>
+          <span class="brand-dot" aria-hidden="true">•</span>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler navbar-toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+
+        <!-- Navbar Links & CTA -->
+        <div class="collapse navbar-collapse navbar-collapse-custom" id="navbarContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#contact">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn-nav-photo" id="btnOpenPhotoStudio" data-bs-toggle="modal" data-bs-target="#photoStudioModal" aria-label="Photo Settings & Background">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span class="d-none d-sm-inline">My Photo</span>
+            </button>
+            <a href="#contact" class="btn-nav-talk">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Let's Talk</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ====================================================================
+         HERO SECTION
+         ==================================================================== -->
+    <header class="hero-section" id="home">
+      <!-- Atmospheric Hero Watermark / Backdrop Silhouette -->
+      <div class="hero-watermark-photo" id="heroWatermarkPhoto" aria-hidden="true">
+        <img id="heroWatermarkImg" src="assets/images/profile.png" alt="" class="hero-watermark-img" />
+      </div>
+      <div class="container position-relative" style="z-index: 2;">
+        <div class="row align-items-center">
+          <!-- Left Column: Hero Content -->
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <!-- 1. Small Label -->
+            <div class="fade-in-init" id="heroSmallLabel">
+              <span class="hero-tag-badge">
+                <i class="fa-solid fa-sparkles text-info me-1"></i>
+                MH RAHUL
+              </span>
+            </div>
+
+            <!-- 2. Large Heading with Modern Neon Accent -->
+            <h1 class="hero-main-heading fade-in-init" id="heroHeading">
+              <span id="heroHeadingPrefix">I’m a </span><br />
+              <span class="neon-text-gradient" id="heroHighlightWord">Web Developer</span>
+            </h1>
+
+            <!-- 3. Professional Description -->
+            <p class="hero-description fade-in-init" id="heroDescription">
+              Passionate Full-Stack Web Developer specialized in architecting high-performance websites, robust PHP/MySQL applications, and interactive modern user experiences with pixel-perfect attention to detail.
+            </p>
+
+            <!-- 4. CTA Buttons -->
+            <div class="hero-cta-group fade-in-init" id="heroCtaGroup">
+              <a href="#projects" class="btn-primary-neon">
+                <span>View My Work</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="btn-glass-secondary">
+                <span>Contact Me</span>
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+            </div>
+
+            <!-- 5. Metadata Strip -->
+            <div class="hero-meta-strip fade-in-init" id="heroMetaStrip">
+              <div class="hero-meta-item">
+                <span class="status-dot-active"></span>
+                <span class="text-white fw-semibold">Available for Work</span>
+              </div>
+              <span class="text-secondary">·</span>
+              <div class="hero-meta-item" id="heroLocation">
+                <i class="fa-solid fa-location-dot text-info"></i>
+                <span>Dhaka, Bangladesh · Remote</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Animated Hero Photo Presentation -->
+          <div class="col-lg-6">
+            <div class="hero-photo-wrapper photo-reveal-init" id="heroPhotoWrapper">
+              <!-- Soft Glowing Light Behind Person -->
+              <div class="photo-backdrop-glow" aria-hidden="true"></div>
+
+              <!-- Thin Animated Orbital Rings with Satellites -->
+              <div class="photo-orbital-ring" aria-hidden="true"></div>
+              <div class="photo-orbital-ring-reverse" aria-hidden="true"></div>
+
+              <!-- Dynamic Circular Glow Around Image -->
+              <div class="photo-frame-aura" aria-hidden="true"></div>
+
+              <!-- Walking-Like Body Movement & Floating Container -->
+              <div class="photo-person-container" id="photoPersonContainer">
+                <div class="photo-walking-movement">
+                  <img id="heroProfileImg" src="assets/images/profile.png" alt="MH Rahul – Web Developer" class="photo-person-img" loading="eager" />
+                </div>
+              </div>
+
+              <!-- Floating Decorative Badges -->
+              <div class="floating-badge badge-pos-1">
+                <i class="fa-solid fa-code text-info"></i>
+                <span>Full-Stack Web</span>
+              </div>
+              <div class="floating-badge badge-pos-2">
+                <i class="fa-solid fa-bolt text-warning"></i>
+                <span>85+ Projects Done</span>
+              </div>
+              <div class="floating-badge badge-pos-3">
+                <i class="fa-solid fa-star text-warning"></i>
+                <span>5.0 Client Rating</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         1. ABOUT ME SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="about">
+      <div class="container">
+        <!-- Section Title Header -->
+        <div class="text-center section-header">
+          <span class="section-kicker">Who I Am</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-lead mx-auto" id="aboutSubtitle">
+            Turning Complex Digital Ideas Into Elegant, High-Performance Web Realities
+          </p>
+        </div>
+
+        <div class="row align-items-stretch mb-5">
+          <!-- Bio & Story -->
+          <div class="col-lg-12 mb-4">
+            <div class="glass-card">
+              <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0 pe-lg-5">
+                  <h3 class="h4 text-white fw-bold mb-3">Architecting Scalable, Modern Web Systems</h3>
+                  <p class="mb-3" id="aboutIntro">
+                    Hello! I'm MH Rahul, a results-driven Web Developer with over 5 years of hands-on experience building fast, scalable, and visually captivating websites and web applications.
+                  </p>
+                  <p class="mb-4" id="aboutDescription">
+                    My core expertise revolves around modern front-end craftsmanship (HTML5, CSS3, JavaScript ES6+, Bootstrap 5) and solid, secure back-end architecture (PHP, MySQL, RESTful APIs). I have built end-to-end e-commerce engines, custom CMS platforms, administrative dashboards, and responsive web portals for startups, digital agencies, and enterprise clients worldwide.
+                  </p>
+                  <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <a href="#contact" class="btn-primary-neon">
+                      <span>Hire Me Today</span>
+                      <i class="fa-solid fa-paper-plane"></i>
+                    </a>
+                    <a href="#skills" class="btn-glass-secondary">
+                      <span>Explore Skills</span>
+                      <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Highlights 4-box layout -->
+                <div class="col-lg-5">
+                  <div class="row g-3" id="aboutHighlightsContainer">
+                    <!-- Populated dynamically from data.js -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics Counter Cards -->
+        <div class="row g-3" id="aboutStatsRow">
+          <div class="col-6 col-lg-3">
+            <div class="stat-counter-box">
+              <div class="stat-counter-number" id="statYears" data-target="5">0</div>
+              <div class="stat-counter-label">Years of Experience</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-counter-box">
+              <div class="stat-counter-number" id="statProjects" data-target="85">0</div>
+              <div class="stat-counter-label">Projects Completed</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-counter-box">
+              <div class="stat-counter-number" id="statClients" data-target="60">0</div>
+              <div class="stat-counter-label">Happy Global Clients</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-counter-box">
+              <div class="stat-counter-number" id="statTech" data-target="20">0</div>
+              <div class="stat-counter-label">Technologies & Tools</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         2. SKILLS SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="skills">
+      <div class="container">
+        <div class="text-center section-header">
+          <span class="section-kicker">My Technical Arsenal</span>
+          <h2 class="section-title">Core Skills & Expertise</h2>
+          <p class="section-lead mx-auto">
+            Specialized modern skill stack crafted over half a decade of intensive full-stack development.
+          </p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="filter-tabs-wrapper">
+          <button type="button" class="filter-tab-btn skill-filter-tab active" data-category="all">All Skills</button>
+          <button type="button" class="filter-tab-btn skill-filter-tab" data-category="frontend">Frontend Stack</button>
+          <button type="button" class="filter-tab-btn skill-filter-tab" data-category="backend">Backend & DB</button>
+          <button type="button" class="filter-tab-btn skill-filter-tab" data-category="tools">APIs & Dev Tools</button>
+        </div>
+
+        <!-- Skills Cards Grid -->
+        <div class="row" id="skillsGrid">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. SERVICES SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="services">
+      <div class="container">
+        <div class="text-center section-header">
+          <span class="section-kicker">What I Offer</span>
+          <h2 class="section-title">Professional Services</h2>
+          <p class="section-lead mx-auto">
+            High-caliber web development solutions tailored to accelerate your business growth and digital presence.
+          </p>
+        </div>
+
+        <!-- 8 Premium Services Grid -->
+        <div class="row" id="servicesGrid">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. PROJECTS SHOWCASE SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="projects">
+      <div class="container">
+        <div class="text-center section-header">
+          <span class="section-kicker">Selected Works</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-lead mx-auto">
+            A curated showcase of dynamic web applications, e-commerce engines, and admin panels built for speed and impact.
+          </p>
+        </div>
+
+        <!-- Projects Filter Tabs -->
+        <div class="filter-tabs-wrapper">
+          <button type="button" class="filter-tab-btn project-filter-tab active" data-category="all">All Projects</button>
+          <button type="button" class="filter-tab-btn project-filter-tab" data-category="ecommerce">E-Commerce</button>
+          <button type="button" class="filter-tab-btn project-filter-tab" data-category="admin">Admin Panels</button>
+          <button type="button" class="filter-tab-btn project-filter-tab" data-category="api">API Solutions</button>
+          <button type="button" class="filter-tab-btn project-filter-tab" data-category="fullstack">Full-Stack & Mobile</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="row" id="projectsGrid">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. EXPERIENCE SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="experience">
+      <div class="container">
+        <div class="text-center section-header">
+          <span class="section-kicker">Career Journey</span>
+          <h2 class="section-title">Work Experience</h2>
+          <p class="section-lead mx-auto">
+            Proven track record of engineering scalable web systems across digital agencies and enterprise products.
+          </p>
+        </div>
+
+        <!-- Modern Vertical Timeline -->
+        <div class="timeline-wrapper" id="experienceTimeline">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. CONTACT SECTION
+         ==================================================================== -->
+    <section class="section-padding" id="contact">
+      <div class="container">
+        <div class="text-center section-header">
+          <span class="section-kicker">Get In Touch</span>
+          <h2 class="section-title">Let’s Build Something Great</h2>
+          <p class="section-lead mx-auto">
+            Have a project in mind, need a consultation, or looking for a full-stack developer to join your team? Reach out directly!
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Left Column: Direct Contact & Social Channels -->
+          <div class="col-lg-5">
+            <div class="contact-info-card">
+              <h3 class="h4 text-white fw-bold mb-4">Direct Channels</h3>
+
+              <!-- Email Quick Copy -->
+              <div class="contact-direct-item">
+                <div class="contact-direct-left">
+                  <div class="contact-icon-bubble bg-primary bg-opacity-25 text-info">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <div class="text-white fw-bold small">Email Address</div>
+                    <div class="text-muted small" id="contactEmailVal">contact.mhrahul@gmail.com</div>
+                  </div>
+                </div>
+                <button type="button" class="contact-quick-btn" id="copyEmailBtn" aria-label="Copy Email">
+                  <i class="fa-regular fa-copy me-1"></i> Copy
+                </button>
+              </div>
+
+              <!-- Phone Quick Copy -->
+              <div class="contact-direct-item">
+                <div class="contact-direct-left">
+                  <div class="contact-icon-bubble bg-success bg-opacity-25 text-success">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <div class="text-white fw-bold small">Phone / Cell</div>
+                    <div class="text-muted small" id="contactPhoneVal">+880 1700-000000</div>
+                  </div>
+                </div>
+                <button type="button" class="contact-quick-btn" id="copyPhoneBtn" aria-label="Copy Phone">
+                  <i class="fa-regular fa-copy me-1"></i> Copy
+                </button>
+              </div>
+
+              <!-- Instant WhatsApp -->
+              <div class="contact-direct-item">
+                <div class="contact-direct-left">
+                  <div class="contact-icon-bubble bg-success bg-opacity-25 text-success">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div>
+                    <div class="text-white fw-bold small">WhatsApp Instant</div>
+                    <div class="text-muted small">Chat directly on WhatsApp</div>
+                  </div>
+                </div>
+                <a href="https://wa.me/8801700000000" target="_blank" rel="noopener noreferrer" class="contact-quick-btn" id="contactWhatsappDirect">
+                  <span>Chat</span> <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                </a>
+              </div>
+
+              <!-- Instant Telegram -->
+              <div class="contact-direct-item">
+                <div class="contact-direct-left">
+                  <div class="contact-icon-bubble bg-info bg-opacity-25 text-info">
+                    <i class="fa-brands fa-telegram"></i>
+                  </div>
+                  <div>
+                    <div class="text-white fw-bold small">Telegram</div>
+                    <div class="text-muted small">@mhrahul_dev</div>
+                  </div>
+                </div>
+                <a href="https://t.me/mhrahul_dev" target="_blank" rel="noopener noreferrer" class="contact-quick-btn" id="contactTelegramDirect">
+                  <span>Message</span> <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                </a>
+              </div>
+
+              <!-- Other Social Links List -->
+              <h4 class="h6 text-white text-uppercase tracking-wider fw-bold mt-4 mb-3">Online Presence</h4>
+              <div id="socialChannelsList">
+                <!-- Populated dynamically from data.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Contact Form -->
+          <div class="col-lg-7">
+            <div class="form-card">
+              <h3 class="h4 text-white fw-bold mb-2">Send a Message</h3>
+              <p class="text-muted small mb-4">
+                Fill in the details below and I will get back to you promptly with a detailed response.
+              </p>
+
+              <form id="portfolioContactForm" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="contactName" class="form-label-custom">Your Name <span class="text-info">*</span></label>
+                    <input type="text" class="form-control form-control-custom" id="contactName" placeholder="e.g. John Doe" required />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="contactEmail" class="form-label-custom">Your Email <span class="text-info">*</span></label>
+                    <input type="email" class="form-control form-control-custom" id="contactEmail" placeholder="e.g. john@example.com" required />
+                  </div>
+
+                  <div class="col-md-12">
+                    <label for="contactPhone" class="form-label-custom">Phone Number (Optional)</label>
+                    <input type="tel" class="form-control form-control-custom" id="contactPhone" placeholder="e.g. +1 555 123 4567" />
+                  </div>
+
+                  <div class="col-md-12">
+                    <label for="contactMessage" class="form-label-custom">Message Details <span class="text-info">*</span></label>
+                    <textarea class="form-control form-control-custom" id="contactMessage" rows="5" placeholder="Tell me about your project, timeline, and requirements..." required></textarea>
+                  </div>
+
+                  <div class="col-12 mt-4">
+                    <button type="submit" class="btn-primary-neon w-100 py-3">
+                      <i class="fa-solid fa-paper-plane me-2"></i>
+                      <span>Send Message</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Live status feedback banner -->
+                <div id="formFeedbackAlert" class="alert d-none mt-3" role="alert"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <div class="mb-3">
+          <a class="navbar-brand-logo justify-content-center" href="#home">
+            <span class="logo-badge-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+            <span>MH RAHUL</span>
+            <span class="brand-dot" aria-hidden="true">•</span>
+          </a>
+        </div>
+        <p class="text-muted small mb-4">
+          Professional Web Developer · Building high-performance, robust digital experiences.
+        </p>
+
+        <!-- Quick Footer Navigation -->
+        <div class="mb-4">
+          <a href="#home" class="footer-nav-link">Home</a>
+          <a href="#about" class="footer-nav-link">About</a>
+          <a href="#skills" class="footer-nav-link">Skills</a>
+          <a href="#services" class="footer-nav-link">Services</a>
+          <a href="#projects" class="footer-nav-link">Projects</a>
+          <a href="#experience" class="footer-nav-link">Experience</a>
+          <a href="#contact" class="footer-nav-link">Contact</a>
+        </div>
+
+        <!-- Footer Social Icons -->
+        <div class="d-flex align-items-center justify-content-center gap-2 mb-4" id="footerSocialLinks">
+          <!-- Populated dynamically from data.js -->
+        </div>
+
+        <div class="text-secondary small">
+          &copy; <span id="currentYear">2026</span> MH Rahul. All Rights Reserved. Crafted with clean HTML5, CSS3 & JavaScript.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn-scroll-top" id="scrollTopBtn" aria-label="Scroll back to top">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- ====================================================================
+         PROJECT QUICK VIEW MODAL
+         ==================================================================== -->
+    <div class="modal fade" id="projectQuickViewModal" tabindex="-1" aria-labelledby="modalProjectTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-custom-content">
+          <div class="modal-header modal-custom-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary bg-opacity-25 text-info px-2 py-1" id="modalProjectCategory">Project</span>
+              <h3 class="modal-title h5 text-white mb-0" id="modalProjectTitle">Project Title</h3>
+            </div>
+            <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="mb-3 rounded overflow-hidden" style="max-height: 360px;">
+              <img src="" alt="Project Preview" id="modalProjectImg" class="w-100 object-fit-cover" />
+            </div>
+            <h4 class="h6 text-info fw-bold mb-2">Project Overview</h4>
+            <p class="text-muted" id="modalProjectDesc"></p>
+
+            <div class="row g-3 my-2">
+              <div class="col-md-6">
+                <span class="text-secondary small d-block mb-1">Key Performance Metric</span>
+                <span class="text-white fw-bold" id="modalProjectStats">Production Ready</span>
+              </div>
+              <div class="col-md-6">
+                <span class="text-secondary small d-block mb-1">Technologies Used</span>
+                <div id="modalProjectTech" class="d-flex flex-wrap gap-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top border-secondary border-opacity-25 p-3">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-glass-secondary px-3 py-2 text-decoration-none" id="modalProjectCodeBtn">
+              <i class="fa-brands fa-github me-1"></i> View Code
+            </a>
+            <a href="#contact" class="btn-primary-neon px-3 py-2 text-decoration-none" id="modalProjectDemoBtn" data-bs-dismiss="modal">
+              <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Discuss Similar Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         PHOTO & BACKGROUND STUDIO MODAL
+         ==================================================================== -->
+    <div class="modal fade" id="photoStudioModal" tabindex="-1" aria-labelledby="photoStudioModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-custom-content">
+          <div class="modal-header modal-custom-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-info bg-opacity-25 text-info px-2 py-1">
+                <i class="fa-solid fa-sparkles me-1"></i> Customizer
+              </span>
+              <h3 class="modal-title h5 text-white mb-0" id="photoStudioModalTitle">Photo & Background Studio</h3>
+            </div>
+            <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="alert alert-dark border-secondary border-opacity-25 d-flex align-items-center gap-2 text-info small mb-4 py-2">
+              <i class="fa-solid fa-circle-check fs-6"></i>
+              <span>Background photo is active! Upload your photo or customize the ambient atmosphere below.</span>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <!-- Preview: Hero Photo -->
+              <div class="col-md-6">
+                <div class="photo-preview-box">
+                  <div class="photo-preview-label">
+                    <i class="fa-solid fa-user text-info me-1"></i> Hero Floating Photo
+                  </div>
+                  <div class="photo-preview-img-wrap">
+                    <img id="previewHeroImg" src="assets/images/profile.png" alt="Hero Avatar Preview" class="photo-preview-thumb" />
+                  </div>
+                  <p class="small text-muted mt-2 mb-0">Shown in the hero 3D orbital floating frame.</p>
+                </div>
+              </div>
+
+              <!-- Preview: Background Photo -->
+              <div class="col-md-6">
+                <div class="photo-preview-box">
+                  <div class="photo-preview-label">
+                    <i class="fa-solid fa-panorama text-info me-1"></i> Background Backdrop Photo
+                  </div>
+                  <div class="photo-preview-img-wrap bg-backdrop-preview">
+                    <img id="previewBgImg" src="assets/images/hero_bg.jpg" alt="Background Preview" class="photo-preview-thumb" />
+                  </div>
+                  <p class="small text-muted mt-2 mb-0">Integrated into the deep ambient canvas background.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Drag and Drop Upload Zone -->
+            <div class="photo-upload-dropzone mb-4" id="photoDropzone">
+              <input type="file" id="photoFileInput" accept="image/*" class="d-none" />
+              <div class="dropzone-content text-center py-4">
+                <div class="dropzone-icon mb-2">
+                  <i class="fa-solid fa-cloud-arrow-up text-info fs-2"></i>
+                </div>
+                <h5 class="text-white mb-1">Upload or Drop Your Photo</h5>
+                <p class="text-muted small mb-2">Support PNG, JPG, WebP. Select your enhanced photo (e.g. Pica-enhance)</p>
+                <button type="button" class="btn btn-sm btn-glass-secondary mt-1" id="btnBrowsePhoto">
+                  <i class="fa-solid fa-folder-open me-1"></i> Browse From Computer / Phone
+                </button>
+              </div>
+            </div>
+
+            <!-- Background Atmosphere Controls -->
+            <div class="card bg-dark bg-opacity-50 border-secondary border-opacity-25 p-3 mb-3">
+              <h6 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="fa-solid fa-sliders text-info"></i> Background Photo Adjustments
+              </h6>
+
+              <!-- Toggle Background Photo -->
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="toggleBgPhotoCheck" checked>
+                <label class="form-check-label text-white small" for="toggleBgPhotoCheck">
+                  Enable Photo in Background Canvas
+                </label>
+              </div>
+
+              <!-- Opacity Slider -->
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <label for="bgPhotoOpacityRange" class="form-label text-muted small mb-0">Background Photo Opacity</label>
+                  <span class="text-info fw-bold small" id="bgOpacityValueText">38%</span>
+                </div>
+                <input type="range" class="form-range" id="bgPhotoOpacityRange" min="10" max="90" step="2" value="38">
+              </div>
+
+              <!-- Style Modes -->
+              <div>
+                <label class="text-muted small d-block mb-2">Background Aura Theme</label>
+                <div class="d-flex flex-wrap gap-2" id="bgThemeSelectors">
+                  <button type="button" class="btn btn-sm btn-outline-info active bg-theme-btn" data-theme="cyber-ambient">
+                    <i class="fa-solid fa-bolt me-1"></i> Cyber Glow
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-info bg-theme-btn" data-theme="hologram-cyan">
+                    <i class="fa-solid fa-microchip me-1"></i> Holographic
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-info bg-theme-btn" data-theme="deep-watermark">
+                    <i class="fa-solid fa-moon me-1"></i> Deep Watermark
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="button" class="btn btn-sm text-secondary" id="btnResetPhotoDefaults">
+                <i class="fa-solid fa-rotate-left me-1"></i> Reset to Default Photo
+              </button>
+              <div id="photoStatusMessage" class="small text-success d-none">
+                <i class="fa-solid fa-circle-check me-1"></i> Saved to browser!
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top border-secondary border-opacity-25 p-3">
+            <button type="button" class="btn-primary-neon px-4 py-2" data-bs-dismiss="modal">
+              <span>Save & Close</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5.3 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Portfolio Data & Engine -->
+    <script src="/js/data.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
